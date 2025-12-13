@@ -5066,39 +5066,30 @@ window.handleContactSubmit = (e) => {
     });
 
 
-// Variables para controlar el scroll del header
-let lastScrollTop = 0;
-const mainHeader = document.getElementById('main-header');
-let headerTicking = false;
+// Variables para controlar el scroll
+    let lastScrollTop = 0;
+    const mainHeader = document.getElementById('main-header');
 
-window.addEventListener('scroll', function() {
-    if (!headerTicking) {
-        window.requestAnimationFrame(() => {
-            let scrollTop = window.scrollY || document.documentElement.scrollTop;
-            
-            // Lógica del Header
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                mainHeader.classList.add('-translate-y-full');
-            } else {
-                mainHeader.classList.remove('-translate-y-full');
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    window.addEventListener('scroll', function() {
+        // Detectar la posición actual del scroll
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // Lógica del Botón Subir
-            const scrollBtn = document.getElementById('scrollToTopBtn');
-            if (scrollBtn) {
-                if (scrollTop > 400) {
-                    scrollBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
-                } else {
-                    scrollBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
-                }
-            }
-            
-            headerTicking = false;
-        });
-        headerTicking = true;
-    }
-}, { passive: true });
+        // Si bajamos más de 100px (para no ocultarlo apenas mueves el dedo)
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // BAJANDO: Ocultamos el menú moviéndolo hacia arriba (-100%)
+            mainHeader.classList.add('-translate-y-full');
+        } else {
+            // SUBIENDO: Mostramos el menú (quitamos el desplazamiento)
+            mainHeader.classList.remove('-translate-y-full');
+        }
+        
+        // Actualizamos la última posición
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+    }, false);
+
+
+// Lógica para mostrar/ocultar el botón al hacer scroll
+    const scrollBtn = document.getElementById('scrollToTopBtn');
 
     window.addEventListener('scroll', () => {
         // Si bajamos más de 400px, aparece el botón
