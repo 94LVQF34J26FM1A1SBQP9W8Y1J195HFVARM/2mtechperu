@@ -2177,79 +2177,95 @@ window.closeAdPopup = () => {
 
 
 
+
 window.initBannerEffects = () => {
     const container = document.querySelector('.group\\/banner'); 
     if (!container) return;
 
-    // Inicializamos la variable de control
     window.isBannerHovered = false;
+    let ticking = false; // Variable para controlar el frame rate
 
-    // --- EVENTOS DEL MOUSE (PAUSA Y 3D) ---
-    
-    // 1. Cuando el mouse ENTRA: Pausar y activar 3D
+    // --- 1. MOUSE ENTER/LEAVE (Sin cambios drásticos) ---
     container.addEventListener('mouseenter', () => {
-        window.isBannerHovered = true; // Marcamos que el usuario está viendo
-        if (window.bannerInterval) clearInterval(window.bannerInterval); // Pausamos rotación
+        window.isBannerHovered = true; 
+        if (window.bannerInterval) clearInterval(window.bannerInterval);
     });
 
-    // 2. Cuando el mouse SE MUEVE: Efecto 3D
-    container.addEventListener('mousemove', (e) => {
-        const activeSlide = document.getElementById(`banner-slide-${window.currentBannerIndex}`);
-        if (!activeSlide) return;
-        const img = activeSlide.querySelector('.banner-3d-target');
-        if (!img) return;
-
-        const rect = container.getBoundingClientRect();
-        const x = e.clientX - rect.left; 
-        const y = e.clientY - rect.top;
-
-        const xPct = (x / rect.width - 0.5) * 2; 
-        const yPct = (y / rect.height - 0.5) * 2;
-
-        const rotationX = yPct * -10; 
-        const rotationY = xPct * 10;
-
-        img.style.setProperty('--rotate-x', `${rotationX}deg`);
-        img.style.setProperty('--rotate-y', `${rotationY}deg`);
-    });
-
-    // 3. Cuando el mouse SALE: Reanudar y Resetear 3D
     container.addEventListener('mouseleave', () => {
-        window.isBannerHovered = false; // El usuario se fue
-
-        // Reanudamos la rotación automática inmediatamente
+        window.isBannerHovered = false;
         if (window.bannerInterval) clearInterval(window.bannerInterval);
         window.bannerInterval = setInterval(() => window.moveBanner(1), 6000);
 
-        // Reseteamos la posición 3D de la imagen
         const activeSlide = document.getElementById(`banner-slide-${window.currentBannerIndex}`);
         if (activeSlide) {
             const img = activeSlide.querySelector('.banner-3d-target');
             if(img) {
-                img.style.setProperty('--rotate-x', '0deg');
-                img.style.setProperty('--rotate-y', '0deg');
+                // Reseteamos estilos directamente
+                img.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
             }
         }
     });
 
-    // --- EVENTO DEL SCROLL (POP-OUT) ---
-    window.addEventListener('scroll', () => {
-        const activeSlide = document.getElementById(`banner-slide-${window.currentBannerIndex}`);
-        if (!activeSlide) return;
-        const img = activeSlide.querySelector('.banner-3d-target');
-        if (!img) return;
-
-        const scrollY = window.scrollY;
-        const moveY = scrollY * 0.15; 
-        const scale = 1 + (scrollY / 4000); 
-        const shadowY = 20 + (scrollY * 0.1); 
-
-        img.style.setProperty('--scroll-y', `${moveY}px`);
-        img.style.setProperty('--scroll-scale', `${scale}`);
-        img.style.setProperty('--drop-shadow-y', `${shadowY}px`);
+    // --- 2. MOUSE MOVE (Optimizado con requestAnimationFrame) ---
+    container.addEventListener('mousemove', (e) => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const activeSlide = document.getElementById(`banner-slide-${window.currentBannerIndex}`);
+                if (activeSlide) {
+                    const img = activeSlide.querySelector('.banner-3d-target');
+                    if (img) {
+                        const rect = container.getBoundingClientRect();
+                        const x = e.clientX - rect.left; 
+                        const y = e.clientY - rect.top;
+                        const xPct = (x / rect.width - 0.5) * 2; 
+                        const yPct = (y / rect.height - 0.5) * 2;
+                        
+                        // Usamos transform directamente (más rápido que setProperty para animaciones continuas)
+                        const rotX = yPct * -10;
+                        const rotY = xPct * 10;
+                        
+                        // Aplicamos todas las transformaciones en una sola línea para evitar reflows
+                        img.style.transform = `translateY(var(--scroll-y, 0px)) scale(var(--scroll-scale, 1)) perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+                    }
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
-};
 
+    // --- 3. SCROLL (Optimizado con requestAnimationFrame) ---
+    // Movemos la lógica del scroll fuera del listener directo
+    let scrollTicking = false;
+    
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+                const activeSlide = document.getElementById(`banner-slide-${window.currentBannerIndex}`);
+                if (activeSlide) {
+                    const img = activeSlide.querySelector('.banner-3d-target');
+                    if (img) {
+                        const scrollY = window.scrollY;
+                        // Solo calculamos si el banner está visible (ahorra recursos)
+                        if (scrollY < 800) { 
+                            const moveY = scrollY * 0.15; 
+                            const scale = 1 + (scrollY / 4000); 
+                            
+                            // Actualizamos variables CSS o transform directo
+                            img.style.setProperty('--scroll-y', `${moveY}px`);
+                            img.style.setProperty('--scroll-scale', `${scale}`);
+                            
+                            // Nota: drop-shadow es muy pesado. Considera desactivarlo al hacer scroll si sigue lento.
+                            // img.style.setProperty('--drop-shadow-y', `${20 + (scrollY * 0.1)}px`);
+                        }
+                    }
+                }
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }, { passive: true }); // 'passive: true' le dice al navegador que no vamos a cancelar el scroll, haciéndolo más fluido
+};
 
 window.router = {
             navigate: (p, params = {}) => {
@@ -5050,30 +5066,39 @@ window.handleContactSubmit = (e) => {
     });
 
 
-// Variables para controlar el scroll
-    let lastScrollTop = 0;
-    const mainHeader = document.getElementById('main-header');
+// Variables para controlar el scroll del header
+let lastScrollTop = 0;
+const mainHeader = document.getElementById('main-header');
+let headerTicking = false;
 
-    window.addEventListener('scroll', function() {
-        // Detectar la posición actual del scroll
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+window.addEventListener('scroll', function() {
+    if (!headerTicking) {
+        window.requestAnimationFrame(() => {
+            let scrollTop = window.scrollY || document.documentElement.scrollTop;
+            
+            // Lógica del Header
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                mainHeader.classList.add('-translate-y-full');
+            } else {
+                mainHeader.classList.remove('-translate-y-full');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 
-        // Si bajamos más de 100px (para no ocultarlo apenas mueves el dedo)
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // BAJANDO: Ocultamos el menú moviéndolo hacia arriba (-100%)
-            mainHeader.classList.add('-translate-y-full');
-        } else {
-            // SUBIENDO: Mostramos el menú (quitamos el desplazamiento)
-            mainHeader.classList.remove('-translate-y-full');
-        }
-        
-        // Actualizamos la última posición
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
-    }, false);
-
-
-// Lógica para mostrar/ocultar el botón al hacer scroll
-    const scrollBtn = document.getElementById('scrollToTopBtn');
+            // Lógica del Botón Subir
+            const scrollBtn = document.getElementById('scrollToTopBtn');
+            if (scrollBtn) {
+                if (scrollTop > 400) {
+                    scrollBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+                } else {
+                    scrollBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
+                }
+            }
+            
+            headerTicking = false;
+        });
+        headerTicking = true;
+    }
+}, { passive: true });
 
     window.addEventListener('scroll', () => {
         // Si bajamos más de 400px, aparece el botón

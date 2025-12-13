@@ -350,4 +350,21 @@
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 
+/* Agrega aceleración de hardware al header para que deslizarse sea suave */
+#main-header {
+    will-change: transform;
+    transform: translateZ(0); /* Truco para forzar GPU */
+}
 
+/* Optimiza las imágenes del banner */
+.banner-3d-target {
+    /* Manten tus estilos actuales pero agrega esto */
+    will-change: transform;
+    /* Reducir el drop-shadow radius durante la animación ayuda mucho al rendimiento */
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3)); 
+}
+
+/* Optimiza las tarjetas de productos al hacer hover */
+.group:hover .group-hover\:scale-110 {
+    will-change: transform;
+}
