@@ -8,24 +8,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
-
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 
 <body class="antialiased min-h-screen flex flex-col text-slate-800 overflow-x-hidden">
-
-    <div class="fixed top-24 right-[-50px] md:right-0 w-[300px] md:w-[500px] opacity-[0.03] z-0 pointer-events-none rotate-12 select-none grayscale">
-    <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/2MTECHPERU%20logo.png" alt="Marca de Agua Fondo" class="w-full h-auto">
-</div>
 
 <div style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; overflow: hidden; z-index: -1;">
     <input type="text" name="fake_username_trap" tabindex="-1">
@@ -35,231 +28,234 @@
 
     <div id="splash-screen" class="fixed inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center">
         <div class="text-center animate-pulse">
-          <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/2MTECHPERU%20logo.png" class="h-32 mb-6 inline-block object-contain">
-            <h1 class="text-5xl font-extrabold tracking-tighter text-white mb-8">Tech<span class="text-[#00979D]">Perú</span></h1>
+            <i class="ph-fill ph-circuitry text-yellow-400 text-6xl mb-4 inline-block"></i>
+            <h1 class="text-5xl font-extrabold tracking-tighter text-white mb-8">Tech<span class="text-yellow-400">Saul</span></h1>
         </div>
         <div class="w-64 h-1.5 bg-slate-800 rounded-full overflow-hidden relative">
-            <div class="absolute top-0 left-0 h-full bg-[#00979D] animate-load-bar rounded-full"></div>
+            <div class="absolute top-0 left-0 h-full bg-yellow-400 animate-load-bar rounded-full"></div>
         </div>
         <p class="text-slate-500 text-xs mt-4 font-bold tracking-widest uppercase">Cargando Tienda...</p>
     </div>
 
-
-<div id="top-bar-announcement" class="bg-[#00979D] text-slate-900 py-3 relative z-[51] shadow-md">
-    <div class="max-w-[1440px] mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-2">
-        
-        <div class="flex items-center gap-3 text-center md:text-left justify-center w-full md:w-auto">
-            
-            <span class="bg-slate-900 text-[#11EDED] px-3 py-1 rounded-md text-[10px] md:text-xs font-black uppercase tracking-widest shadow-sm whitespace-nowrap">
-                NO TE LO PIERDAS!!
-            </span>
-
-            <p class="text-xs md:text-sm leading-tight">
-                <span class="font-extrabold text-slate-900">⚡ GRAN LIQUIDACIÓN:</span>
-                Aprovecha hasta <span class="font-black bg-slate-900 text-white px-1 rounded mx-1">-50% DE DESCUENTO</span> en productos seleccionados.
-                <a href="#" onclick="event.preventDefault(); router.navigate('/shop', {filter: 'offers'})" class="font-bold underline decoration-2 decoration-slate-900 hover:text-white hover:decoration-white transition ml-1">
-                    ¡Comprar Ahora!
-                </a>
-            </p>
+    <div id="top-bar-announcement" class="bg-yellow-400 text-slate-900 text-[10px] md:text-xs font-bold py-2 px-4 relative z-[51]">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-center gap-4">
+            <div class="flex items-center gap-2 text-center">
+                <span class="bg-slate-900 text-yellow-400 px-2 py-0.5 rounded text-[9px] uppercase tracking-wider hidden sm:inline-block">Hoy</span>
+                <p>
+                    🔥 <strong>OFERTA RELÁMPAGO:</strong> Hasta <span class="border-b border-slate-900">50% de Descuento</span> de cualquier producto. 
+                    <a href="#" onclick="event.preventDefault(); router.navigate('/shop', {filter: 'offers'})" class="underline ml-1 hover:text-white transition">Ver ofertas aquí</a>
+                </p>
+            </div>
         </div>
+    </div>
+    
+    <header id="main-header" class="bg-slate-900 text-white sticky top-0 z-50 shadow-xl">
+<div class="w-full px-4 py-3 max-w-[1440px] mx-auto">
+            <div class="flex items-center justify-between gap-4">
+                
+                <button onclick="uiManager.toggleMobileMenu()" class="lg:hidden p-2 text-white hover:text-yellow-400 transition">
+                    <i class="ph-bold ph-list text-3xl"></i>
+                </button>
 
-        <div class="hidden md:flex items-center gap-6 text-xs font-bold tracking-wide shrink-0 opacity-90">
-            
-            <div class="h-4 w-px bg-slate-900/20"></div>
-
-            <a href="#" onclick="event.preventDefault(); router.navigate('/faq')" class="flex items-center gap-2 hover:text-white hover:scale-105 transition-all group">
-                <div class="bg-slate-900/10 p-1 rounded-full group-hover:bg-white group-hover:text-slate-900 transition">
-                    <i class="ph-bold ph-seal-question text-base"></i>
+                <div class="flex items-center cursor-pointer group shrink-0" onclick="router.navigate('/')">
+                    <i class="ph-fill ph-circuitry text-yellow-400 text-2xl md:text-3xl mr-2 group-hover:rotate-180 transition-transform duration-500"></i>
+                    <h1 class="text-xl md:text-2xl font-extrabold tracking-tighter text-white hidden sm:block">Tech<span class="text-yellow-400">Saul</span></h1>
                 </div>
-                <span>Centro de Ayuda</span>
-            </a>
 
-            <a href="#" onclick="event.preventDefault(); router.navigate('/how-to-buy')" class="flex items-center gap-2 hover:text-white hover:scale-105 transition-all group">
-                <div class="bg-slate-900/10 p-1 rounded-full group-hover:bg-white group-hover:text-slate-900 transition">
-                    <i class="ph-bold ph-bag text-base"></i>
+                <div class="hidden md:flex flex-1 items-center max-w-4xl mx-4 lg:mx-8 gap-6">
+                   
+ <div class="flex-1 relative">
+
+<input 
+    type="search" 
+    name="search_query_final_fix" 
+    id="global-search" 
+    autocomplete="one-time-code" 
+    readonly 
+    onfocus="this.removeAttribute('readonly');"
+    class="w-full bg-slate-800 text-white border border-slate-700 rounded-lg py-2.5 pl-10 pr-4 focus:ring-2 focus:ring-yellow-400 outline-none text-sm transition-all" 
+    placeholder="Buscar productos...">
+
+                        <i class="ph ph-magnifying-glass absolute left-3.5 top-3 text-slate-400"></i>
+                        <div id="search-results" class="absolute top-full left-0 w-full bg-white mt-2 rounded-xl shadow-2xl border border-slate-100 hidden z-[60] max-h-[400px] overflow-y-auto custom-scrollbar"></div>
+                    </div>
+
+
+                    <div class="hidden xl:flex items-center gap-8 border-l border-slate-700 pl-6">
+                        <div class="flex items-center gap-3 group cursor-pointer">
+                            <i class="ph ph-truck text-yellow-400 text-2xl group-hover:scale-110 transition"></i>
+                            <div class="leading-tight">
+                                <div class="font-bold text-white text-sm">Envíos</div>
+                                <div class="text-slate-400 text-[10px] uppercase tracking-wide">Delivery para todo el Perú</div>
+                            </div>
+                        </div>
+
+   <div onclick="window.open('https://wa.me/51960436357', '_blank')" class="flex items-center gap-3 group cursor-pointer hover:bg-white/5 p-1 rounded-lg transition-colors">
+                            <i class="ph ph-whatsapp-logo text-yellow-400 text-2xl group-hover:scale-110 transition"></i>
+                            <div class="leading-tight">
+                                <div class="font-bold text-white text-sm group-hover:text-yellow-400 transition-colors">+51 960 436 357</div>
+                                <div class="text-slate-400 text-[10px] uppercase tracking-wide">Atención 9AM-6PM</div>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
-                <span>Cómo Comprar</span>
-            </a>
 
+                <div class="flex items-center gap-3 md:gap-4 shrink-0">
+                    <button class="md:hidden p-2 text-slate-300 hover:text-white" onclick="document.getElementById('mobile-search-bar').classList.toggle('hidden')">
+                        <i class="ph ph-magnifying-glass text-2xl"></i>
+                    </button>
+
+
+
+    <div id="auth-dropdown-container" class="relative group h-full flex items-center">
+    
+    <button onclick="userActions.handleAuthClick()" class="flex items-center gap-2 hover:text-yellow-400 transition focus:outline-none">
+        <div class="p-1.5 md:p-2 bg-slate-800 rounded-full border border-slate-700 group-hover:border-yellow-400 group-hover:text-yellow-400 transition">
+            <i class="ph ph-user text-xl"></i>
         </div>
+        <span class="text-xs font-bold hidden lg:block text-right leading-tight" id="auth-label">
+            Mi Cuenta<br><span class="font-normal text-slate-400">Entrar / Registro</span>
+        </span>
+        <i id="auth-arrow" class="ph-bold ph-caret-down text-xs text-slate-500 group-hover:rotate-180 transition-transform hidden"></i>
+    </button>
 
+    <div id="auth-menu-dropdown" class="absolute top-full right-0 pt-4 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-[100]">
+        <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden">
+            <div id="auth-menu-content" class="py-2"></div>
+        </div>
     </div>
 </div>
-
-
-  <header id="main-header" class="bg-[#141b2d] text-white sticky top-0 z-50 shadow-xl transition-all duration-300 transform">
-    <div class="w-full px-4 py-2 max-w-[1440px] mx-auto">
-        <div class="flex items-center justify-between gap-3">
-            
-            <button onclick="uiManager.toggleMobileMenu()" class="lg:hidden p-1 text-white hover:text-[#00979D] transition">
-                <i class="ph-bold ph-list text-2xl"></i>
-            </button>
-
-            <div class="flex items-center cursor-pointer group shrink-0 gap-1" onclick="router.navigate('/')">
-                <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/2MTECHPERU%20logo.png" class="h-10 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:rotate-180">
-<h1 class="text-xl md:text-2xl font-extrabold tracking-tighter hidden sm:block leading-none">
-  <span class="text-[#10c4c1]" style="text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-    2M
-  </span>
-  <span class="text-[#0ae4da]" style="text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-    Tech
-  </span>
-  <span class="text-[#ffffff]" style="text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-    Perú
-  </span>
-</h1>
-
-          
-         
-            </div>
-
-            <div class="hidden md:flex flex-1 items-center w-full mx-6 gap-6">
-                
-                <div class="flex-1 relative max-w-2xl">
-                    <input 
-                        type="search" 
-                        name="search_query_final_fix" 
-                        id="global-search" 
-                        autocomplete="one-time-code" 
-                        readonly 
-                        onfocus="this.removeAttribute('readonly');"
-                        class="w-full bg-slate-800 text-white border border-slate-700 rounded-lg py-2.5 pl-10 pr-4 focus:ring-1 focus:ring-[#00979D] outline-none text-sm transition-all shadow-inner" 
-                        placeholder="Buscar productos...">
-
-                    <i class="ph ph-magnifying-glass absolute left-3 top-3 text-slate-400"></i>
-                    <div id="search-results" class="absolute top-full left-0 w-full bg-white mt-2 rounded-xl shadow-2xl border border-slate-100 hidden z-[60] max-h-[400px] overflow-y-auto custom-scrollbar"></div>
-                </div>
-
-                <div class="hidden xl:flex items-center gap-6 border-l border-slate-700 pl-6 shrink-0">
-                    <div class="flex items-center gap-2 group cursor-pointer">
-                       <i class="ph ph-truck text-[#10bcc2] text-2xl group-hover:scale-110 transition"></i>
-                        <div class="leading-tight">
-                            <div class="font-bold text-white text-xs">Envíos</div>
-                            <div class="text-slate-400 text-[10px] uppercase tracking-wide">Todo Perú</div>
-                        </div>
-                    </div>
-
-                    <div onclick="window.open('https://wa.me/51960436357', '_blank')" class="flex items-center gap-2 group cursor-pointer hover:bg-white/5 p-1 rounded-lg transition-colors">
-                        <i class="ph ph-whatsapp-logo text-[#07D946] text-2xl group-hover:scale-110 transition"></i>
-                        <div class="leading-tight">
-                            <div class="font-bold text-white text-xs group-hover:text-[#00979D] transition-colors">+51 960 436 357</div>
-                            <div class="text-slate-400 text-[10px] uppercase tracking-wide">Contáctame</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-                
-                <button class="md:hidden p-2 text-slate-300 hover:text-[#00979D] transition-colors" onclick="document.getElementById('mobile-search-bar').classList.toggle('hidden')">
-                    <i class="ph ph-magnifying-glass text-2xl"></i>
-                </button>
-
-                <div class="hidden md:block w-px h-8 bg-gradient-to-b from-transparent via-slate-600 to-transparent mx-1"></div>
-
-                <div id="auth-dropdown-container" class="relative group h-full flex items-center">
-                    <button onclick="userActions.handleAuthClick()" class="flex items-center gap-2 py-1 px-1 pr-3 rounded-full border border-transparent hover:border-slate-700 hover:bg-slate-800/80 transition-all duration-300 group/user">
-                        <div class="relative w-9 h-9 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-[#26E4ED] group-hover/user:bg-[#26E4ED] group-hover/user:text-slate-900 group-hover/user:border-[#26E4ED] transition-all shadow-lg">
-                            <i class="ph-fill ph-user text-lg"></i>
-                        </div>
-                        <div class="hidden lg:flex flex-col items-start text-left">
-                            <span id="auth-label" class="text-[10px] leading-tight text-slate-400 group-hover/user:text-slate-200 transition-colors">
-                                Hola<br><span class="text-xs font-bold text-white">Cuenta</span>
-                            </span>
-                        </div>
-                        <i id="auth-arrow" class="ph-bold ph-caret-down text-[10px] text-slate-500 group-hover/user:text-[#26E4ED] group-hover/user:rotate-180 transition-all duration-300 ml-1 hidden lg:block"></i>
-                    </button>
-                    <div id="auth-menu-dropdown" class="absolute top-full right-0 pt-4 w-60 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-[100]">
-                        <div class="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden ring-1 ring-black/5">
-                            <div id="auth-menu-content" class="py-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button onclick="cartManager.toggleCart()" class="relative group/cart ml-1">
-                    <div class="flex items-center gap-2 py-2 px-3 md:px-4 rounded-full border border-slate-700 bg-slate-800 hover:bg-white hover:border-white transition-all duration-300 shadow-lg overflow-hidden">
-                        <div class="relative h-6 w-6 flex items-center justify-center overflow-hidden">
-                            <i class="ph-fill ph-shopping-cart text-xl text-white absolute transition-all duration-300 transform group-hover/cart:-translate-y-[150%] group-hover/cart:opacity-0"></i>
-                            <i class="ph-bold ph-bag text-xl text-slate-900 absolute transition-all duration-300 transform translate-y-[150%] opacity-0 group-hover/cart:translate-y-0 group-hover/cart:opacity-100"></i>
-                        </div>
-                        <span class="hidden xl:block text-xs font-bold text-white group-hover/cart:text-slate-900 uppercase tracking-wide transition-colors duration-300">Carrito</span>
-                    </div>
-                    <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full opacity-0 transition-opacity border-2 border-[#141b2d] shadow-sm scale-100 group-hover/cart:scale-110 group-hover/cart:animate-bounce">0</span>
-                </button>
-            </div>
-        </div>
-
-        <div id="mobile-search-bar" class="hidden mt-3 md:hidden pb-2">
-            <input type="search" name="mobile_query_final_fix" id="mobile-search-input" autocomplete="one-time-code" readonly onfocus="this.removeAttribute('readonly');" class="w-full bg-slate-800 text-white border border-slate-700 rounded-lg py-2 px-4 focus:ring-1 focus:ring-[#00979D] outline-none text-sm" placeholder="Buscar productos...">
-        </div>
-    </div>
-
-    <div class="hidden lg:block border-t border-slate-800 bg-[#0B1120] z-50 relative shadow-2xl">
-       <div class="relative w-full px-4 max-w-[1440px] mx-auto">
-            <ul class="flex items-center justify-center gap-1 text-sm font-medium h-8">
-                <li class="h-full flex items-center">
-                    <a id="nav-home" href="#" onclick="event.preventDefault(); router.navigate('/')" class="relative group h-full flex items-center px-4 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-[#00979D]/0 via-[#00979D]/5 to-[#00979D]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-white group-hover:text-[#00979D] group-hover:tracking-[0.25em] transition-all duration-500 ease-out group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)] flex items-center gap-2">
-                            <i class="ph-bold ph-house text-lg group-hover:-translate-y-0.5 transition-transform"></i> Inicio
-                        </span>
-                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-[#00979D] to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
-                    </a>
-                </li>
-                
-                <li class="group/menu h-full flex items-center" onmouseenter="megaMenuManager.init()">
-                    <a id="nav-shop" href="#" onclick="event.preventDefault(); router.navigate('/shop')" class="relative group h-full flex items-center px-4 overflow-hidden">
-                         <div class="absolute inset-0 bg-gradient-to-b from-[#00979D]/0 via-[#00979D]/5 to-[#00979D]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-white group-hover:text-[#00979D] group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
-                            <i class="ph-bold ph-squares-four text-lg group-hover:rotate-90 transition-transform duration-500"></i> Tienda <i class="ph-bold ph-caret-down group-hover:rotate-180 transition-transform duration-500 text-xs"></i>
-                        </span>
-                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-[#00979D] to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
-                    </a>
                     
-                    <div class="absolute top-full left-1/2 -translate-x-1/2 w-[900px] bg-white rounded-b-2xl shadow-2xl border-x border-b border-slate-100 opacity-0 invisible translate-y-4 group-hover/menu:opacity-100 group-hover/menu:visible group-hover/menu:translate-y-0 transition-all duration-300 z-50 overflow-hidden">
-                        <div class="flex h-[380px]">
-                            <div class="w-1/3 bg-slate-50 border-r border-slate-100 py-6 overflow-y-auto custom-scrollbar" id="mm-categories-list">
-                                <div class="text-center text-slate-400 text-xs mt-10">Cargando...</div>
-                            </div>
-                            <div class="w-2/3 p-6 bg-white relative">
-                                <div id="mm-products-preview" class="grid grid-cols-3 gap-4 h-full content-start"></div>
-                                <div class="absolute bottom-4 right-4">
-                                    <button id="mm-view-all-btn" class="bg-slate-900 text-[#00979D] text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 hover:bg-slate-800 transition">
-                                        Ver toda la categoría <i class="ph-bold ph-arrow-right"></i>
-                                    </button>
+
+
+
+                    
+                    <button onclick="cartManager.toggleCart()" class="relative group">
+                        <div class="p-1.5 md:p-2 bg-slate-800 rounded-full border border-slate-700 group-hover:bg-yellow-400 group-hover:text-slate-900 transition">
+                            <i class="ph ph-shopping-cart text-xl"></i>
+                        </div>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full opacity-0 transition-opacity border border-slate-900">0</span>
+                    </button>
+                </div>
+            </div>
+
+           
+            <div id="mobile-search-bar" class="hidden mt-3 md:hidden pb-2">
+
+<input 
+    type="search" 
+    name="mobile_query_final_fix" 
+    id="mobile-search-input" 
+    autocomplete="one-time-code" 
+    readonly 
+    onfocus="this.removeAttribute('readonly');"
+    class="w-full bg-slate-800 text-white border border-slate-700 rounded-lg py-2 px-4 focus:ring-1 focus:ring-yellow-400 outline-none text-sm" 
+    placeholder="Buscar productos...">
+
+</div>
+        </div>
+
+
+
+<div class="hidden lg:block border-t border-slate-800 bg-[#0B1120] z-50 relative shadow-2xl">
+           <div class="relative w-full px-4 max-w-[1440px] mx-auto">
+                
+                <ul class="flex items-center justify-center gap-1 text-sm font-medium h-8">
+                    
+                    <li class="h-full flex items-center">
+                        <a id="nav-home" href="#" onclick="event.preventDefault(); router.navigate('/')" class="relative group h-full flex items-center px-4 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            
+                            <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-yellow-400 group-hover:tracking-[0.25em] transition-all duration-500 ease-out group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)] flex items-center gap-2">
+                                <i class="ph-bold ph-house text-lg group-hover:-translate-y-0.5 transition-transform"></i> Inicio
+                            </span>
+                            
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
+                        </a>
+                    </li>
+                    
+                    <li class="group/menu h-full flex items-center" onmouseenter="megaMenuManager.init()">
+                        <a id="nav-shop" href="#" onclick="event.preventDefault(); router.navigate('/shop')" class="relative group h-full flex items-center px-4 overflow-hidden">
+                             <div class="absolute inset-0 bg-gradient-to-b from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            
+                            <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-yellow-400 group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
+                                <i class="ph-bold ph-squares-four text-lg group-hover:rotate-90 transition-transform duration-500"></i> 
+                                Categorías 
+                                <i class="ph-bold ph-caret-down group-hover:rotate-180 transition-transform duration-500 text-xs"></i>
+                            </span>
+                            
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
+                        </a>
+                        
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 w-[900px] bg-white rounded-b-2xl shadow-2xl border-x border-b border-slate-100 opacity-0 invisible translate-y-4 group-hover/menu:opacity-100 group-hover/menu:visible group-hover/menu:translate-y-0 transition-all duration-300 z-50 overflow-hidden">
+                            <div class="flex h-[380px]">
+                                <div class="w-1/3 bg-slate-50 border-r border-slate-100 py-6 overflow-y-auto custom-scrollbar" id="mm-categories-list">
+                                    <div class="text-center text-slate-400 text-xs mt-10">Cargando...</div>
+                                </div>
+                                <div class="w-2/3 p-6 bg-white relative">
+                                    <div id="mm-products-preview" class="grid grid-cols-3 gap-4 h-full content-start"></div>
+                                    <div class="absolute bottom-4 right-4">
+                                        <button id="mm-view-all-btn" class="bg-slate-900 text-yellow-400 text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 hover:bg-slate-800 transition">
+                                            Ver toda la categoría <i class="ph-bold ph-arrow-right"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                   
+                    <li class="h-full flex items-center">
+                        <a id="nav-faq" href="#" onclick="event.preventDefault(); router.navigate('/faq')" class="relative group h-full flex items-center px-4 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            
+                            <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-yellow-400 group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
+                                <i class="ph-bold ph-seal-question text-lg group-hover:scale-110 transition-transform"></i> FAQs
+                            </span>
+                            
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
+                        </a>
+                    </li>
 
-<li id="menu-item-services" class="h-full flex items-center hidden">
-    <a id="nav-services" href="#" onclick="event.preventDefault(); router.navigate('/services')" class="relative group h-full flex items-center px-4 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#00979D]/0 via-[#00979D]/5 to-[#00979D]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-white group-hover:text-[#00979D] group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
-            <i class="ph-bold ph-lightning text-lg group-hover:animate-pulse"></i> Servicios
-        </span>
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-[#00979D] to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
-    </a>
-</li>
+                    <li class="h-full flex items-center">
+                        <a id="nav-how-to-buy" href="#" onclick="event.preventDefault(); router.navigate('/how-to-buy')" class="relative group h-full flex items-center px-4 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-yellow-400 group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
+                                <i class="ph-bold ph-question text-lg group-hover:animate-bounce"></i> Cómo Comprar
+                            </span>
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
+                        </a>
+                    </li>
+              
+                    <li class="h-full flex items-center">
+                        <a id="nav-about" href="#" onclick="event.preventDefault(); router.navigate('/about')" class="relative group h-full flex items-center px-4 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-yellow-400 group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
+                                <i class="ph-bold ph-users-three text-lg group-hover:animate-pulse"></i> Nosotros
+                            </span>
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
+                        </a>
+                    </li>
 
+                    <li class="h-full flex items-center">
+                        <a id="nav-contact" href="#" onclick="event.preventDefault(); router.navigate('/contact')" class="relative group h-full flex items-center px-4 overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-b from-yellow-400/0 via-yellow-400/5 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 group-hover:text-yellow-400 group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
+                                <i class="ph-bold ph-chat-circle-dots text-lg group-hover:rotate-12 transition-transform"></i> Contacto
+                            </span>
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
+                        </a>
+                    </li>
 
-
-                <li class="h-full flex items-center">
-                    <a id="nav-about" href="#" onclick="event.preventDefault(); router.navigate('/about')" class="relative group h-full flex items-center px-4 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-b from-[#00979D]/0 via-[#00979D]/5 to-[#00979D]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <span class="relative z-10 text-[10px] font-extrabold uppercase tracking-widest text-white group-hover:text-[#00979D] group-hover:tracking-[0.25em] transition-all duration-500 ease-out flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">
-                            <i class="ph-bold ph-users-three text-lg group-hover:animate-pulse"></i> Nosotros
-                        </span>
-                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-[#00979D] to-transparent group-hover:w-full transition-all duration-500 ease-out opacity-0 group-hover:opacity-100"></div>
-                    </a>
-                </li>
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</header>
 
 
+
+        
+    </header>
 
     <div id="mobile-menu" class="fixed inset-0 z-[60] hidden lg:hidden">
         <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity" onclick="uiManager.toggleMobileMenu()"></div>
@@ -267,10 +263,10 @@
             <div class="flex flex-col h-full">
                 <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
                     <div class="flex items-center gap-2">
-                       <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/2MTECHPERU%20logo.png" class="h-10 w-auto object-contain">
+                        <i class="ph-fill ph-circuitry text-yellow-400 text-2xl"></i>
                         <span class="text-xl font-bold">Menú</span>
                     </div>
-                    <button onclick="uiManager.toggleMobileMenu()"><i class="ph-bold ph-x text-2xl hover:text-[#00979D]"></i></button>
+                    <button onclick="uiManager.toggleMobileMenu()"><i class="ph-bold ph-x text-2xl hover:text-yellow-400"></i></button>
                 </div>
                 <div class="bg-slate-100 p-4 border-b border-slate-200">
                      <div class="flex items-center gap-3 mb-3">
@@ -280,20 +276,21 @@
                 </div>
                 <div class="flex-1 overflow-y-auto py-4">
                     <nav class="space-y-1 px-2">
-                        <a href="#" onclick="uiManager.mobileNavigate('/')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100"><i class="ph-bold ph-house mr-3 text-[#26E4ED]"></i> Inicio</a>
-                        <a href="#" onclick="uiManager.mobileNavigate('/shop')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100"><i class="ph-bold ph-storefront mr-3 text-[#26E4ED]"></i> Tienda Completa</a>
+                        <a href="#" onclick="uiManager.mobileNavigate('/')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100"><i class="ph-bold ph-house mr-3 text-yellow-500"></i> Inicio</a>
+                        <a href="#" onclick="uiManager.mobileNavigate('/shop')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100"><i class="ph-bold ph-storefront mr-3 text-yellow-500"></i> Tienda Completa</a>
                     <a href="#" onclick="uiManager.mobileNavigate('/how-to-buy')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100">
-    <i class="ph-bold ph-question mr-3 text-[#26E4ED]"></i> Cómo Comprar
+    <i class="ph-bold ph-question mr-3 text-yellow-500"></i> Cómo Comprar
 </a>
                
 
 <a href="#" onclick="uiManager.mobileNavigate('/about')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100">
-    <i class="ph-bold ph-users-three mr-3 text-[#26E4ED]"></i> Nosotros
+    <i class="ph-bold ph-users-three mr-3 text-yellow-500"></i> Nosotros
 </a>
 
-<a id="mobile-link-services" href="#" onclick="uiManager.mobileNavigate('/services')" class="hidden flex items-center px-5 py-4 text-sm font-bold text-slate-700 border-l-4 border-transparent hover:border-[#26E4ED] hover:bg-slate-50 transition-all">
-    <i class="ph-fill ph-lightning mr-4 text-xl text-slate-400 group-hover:text-[#26E4ED]"></i> Servicios Eléctricos
+<a href="#" onclick="uiManager.mobileNavigate('/contact')" class="flex items-center px-4 py-3 text-base font-medium text-slate-900 rounded-lg hover:bg-slate-100">
+    <i class="ph-bold ph-chat-circle-dots mr-3 text-yellow-500"></i> Contacto
 </a>
+
                     </nav>
                 </div>
                 <div class="p-4 border-t border-slate-200 bg-slate-50">
@@ -309,41 +306,43 @@
 
 
 
+<footer id="main-footer" class="relative bg-slate-900 text-slate-300 font-sans mt-auto pt-24 pb-8 border-t-0">
 
-    
-<footer id="main-footer" class="relative bg-slate-100 text-slate-600 font-sans mt-auto pt-16 pb-8 border-t border-slate-300">
-
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-[#f1f5f9] to-[#e2e8f0] z-0 pointer-events-none"></div>
-    
-    <div class="absolute inset-0 opacity-[0.5] pointer-events-none z-0" 
-         style="background-image: radial-gradient(#94a3b8 0.8px, transparent 0.8px); background-size: 20px 20px;">
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[60px] md:h-[100px] fill-[#f8fafc]">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+        </svg>
     </div>
 
-    <div class="absolute top-0 left-0 w-full h-px bg-white z-20 opacity-50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-800/50 to-slate-900 z-0 pointer-events-none"></div>
+    
+    <div class="absolute inset-0 opacity-[0.07] pointer-events-none z-0" 
+         style="background-image: linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px); background-size: 50px 50px; mask-image: linear-gradient(to bottom, transparent, black);">
+    </div>
 
    <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12">
         
-        <div class="flex flex-wrap justify-center gap-6 md:gap-12 py-8 border-b border-slate-300/50 mb-12 text-sm font-medium text-slate-500">
-            <div class="flex items-center gap-3 group hover:text-[#00979D] transition-colors">
-                <div class="p-2 bg-white border border-slate-200 shadow-sm rounded-full group-hover:bg-[#00979D] group-hover:text-white transition-colors">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-12 py-8 border-b border-slate-700/50 mb-12 text-sm font-medium text-slate-400">
+            <div class="flex items-center gap-3 group hover:text-white transition-colors">
+                <div class="p-2 bg-slate-800 rounded-full group-hover:bg-yellow-400 group-hover:text-slate-900 transition-colors">
                     <i class="ph-fill ph-shield-check text-lg"></i>
                 </div>
                 <span>Garantía Oficial de Fábrica</span>
             </div>
             
-            <div class="hidden md:block w-px h-8 bg-slate-300"></div>
+            <div class="hidden md:block w-px h-8 bg-slate-700"></div>
             
-            <div class="flex items-center gap-3 group hover:text-[#00979D] transition-colors">
-                <div class="p-2 bg-white border border-slate-200 shadow-sm rounded-full group-hover:bg-[#00979D] group-hover:text-white transition-colors">
+            <div class="flex items-center gap-3 group hover:text-white transition-colors">
+                <div class="p-2 bg-slate-800 rounded-full group-hover:bg-yellow-400 group-hover:text-slate-900 transition-colors">
                     <i class="ph-fill ph-truck text-lg"></i>
                 </div>
                 <span>Envíos Seguros a todo el Perú</span>
             </div>
             
-            <div class="hidden md:block w-px h-8 bg-slate-300"></div>
+            <div class="hidden md:block w-px h-8 bg-slate-700"></div>
             
-            <div class="flex items-center gap-3 group hover:text-[#00979D] transition-colors">
-                <div class="p-2 bg-white border border-slate-200 shadow-sm rounded-full group-hover:bg-[#00979D] group-hover:text-white transition-colors">
+            <div class="flex items-center gap-3 group hover:text-white transition-colors">
+                <div class="p-2 bg-slate-800 rounded-full group-hover:bg-yellow-400 group-hover:text-slate-900 transition-colors">
                     <i class="ph-fill ph-lock-key text-lg"></i>
                 </div>
                 <span>Compra 100% Protegida</span>
@@ -353,84 +352,72 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
             
             <div class="lg:col-span-4 space-y-6 text-center lg:text-left">
-<div class="inline-flex items-center justify-center lg:justify-start gap-2 cursor-pointer group" onclick="router.navigate('/')">
-    <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/2MTECHPERU%20logo.png" class="h-16 w-auto object-contain drop-shadow-xl transition-transform duration-300 group-hover:rotate-6">
-
-
-<h2 class="text-2xl font-extrabold tracking-tighter">
-  <span class="text-[#10c4c1] font-extrabold drop-shadow-lg"
-        style="-webkit-text-stroke: 1px #141b2d; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-    2M
-  </span>
-
-  <span class="text-[#0ae4da] font-extrabold drop-shadow-lg"
-        style="-webkit-text-stroke: 1px #141b2d; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-    Tech
-  </span>
-
-  <span class="text-[#ffffff] font-extrabold drop-shadow-lg"
-        style="-webkit-text-stroke: 1px #141b2d; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
-    Perú
-  </span>
-</h2>
-
-
-
-</div>
-
-
-                <p class="text-slate-500 text-sm leading-relaxed max-w-sm mx-auto lg:mx-0 font-medium">
-                    Equipamos tus ideas con los mejores componentes y gadgets del mercado. Calidad asegurada y soporte real.
+                <div class="inline-flex items-center justify-center lg:justify-start gap-2 cursor-pointer group" onclick="router.navigate('/')">
+                    <div class="w-10 h-10 bg-slate-800 border border-slate-600 rounded-xl flex items-center justify-center text-yellow-400 shadow-xl group-hover:rotate-6 transition-transform duration-300">
+                        <i class="ph-fill ph-circuitry text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-white tracking-tighter">Tech<span class="text-yellow-400">Saul</span></h2>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed max-w-sm mx-auto lg:mx-0">
+                    Equipamos tus ideas con los mejores componentes y gadgets del mercado. Calidad asegurada.
                 </p>
                 <div class="flex justify-center lg:justify-start gap-3 pt-2">
-                    <a href="#" class="w-10 h-10 rounded-xl bg-white border border-slate-300 flex items-center justify-center text-slate-500 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 shadow-sm"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-white border border-slate-300 flex items-center justify-center text-slate-500 hover:text-white hover:bg-[#E4405F] hover:border-[#E4405F] transition-all duration-300 shadow-sm"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-white border border-slate-300 flex items-center justify-center text-slate-500 hover:text-white hover:bg-[#000000] hover:border-black transition-all duration-300 shadow-sm"><i class="ph-fill ph-tiktok-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 shadow-sm"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#E4405F] hover:border-[#E4405F] transition-all duration-300 shadow-sm"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#000000] hover:border-white transition-all duration-300 shadow-sm"><i class="ph-fill ph-tiktok-logo text-xl"></i></a>
                 </div>
             </div>
 
             <div class="lg:col-span-2 text-center lg:text-left">
-                <h4 class="text-slate-900 font-bold mb-6 text-sm uppercase tracking-widest border-b-2 border-[#00979D] inline-block pb-1">
+                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest border-b border-yellow-400/30 inline-block pb-1">
                     Tienda
                 </h4>
-                <ul class="space-y-3 text-sm font-medium">
-                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/shop')" class="text-slate-500 hover:text-[#00979D] transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#00979D]"></i> Catálogo</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/shop', {filter: 'offers'})" class="text-slate-500 hover:text-[#00979D] transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#00979D]"></i> Ofertas</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/profile', {tab: 'favorites'})" class="text-slate-500 hover:text-[#00979D] transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#00979D]"></i> Favoritos</a></li>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/shop')" class="text-slate-400 hover:text-yellow-400 transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-yellow-400"></i> Catálogo</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/shop', {filter: 'offers'})" class="text-slate-400 hover:text-yellow-400 transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-yellow-400"></i> Ofertas</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/profile', {tab: 'favorites'})" class="text-slate-400 hover:text-yellow-400 transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-yellow-400"></i> Favoritos</a></li>
                 </ul>
             </div>
 
             <div class="lg:col-span-3 text-center lg:text-left">
-                <h4 class="text-slate-900 font-bold mb-6 text-sm uppercase tracking-widest border-b-2 border-blue-500 inline-block pb-1">
+                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest border-b border-blue-500/30 inline-block pb-1">
                     Ayuda
                 </h4>
-                <ul class="space-y-3 text-sm font-medium">
-                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/profile', {tab: 'orders'})" class="text-slate-500 hover:text-[#00979D] transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#00979D]"></i> Rastrear Pedido</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/faq')" class="text-slate-500 hover:text-[#00979D] transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#00979D]"></i> Preguntas Frecuentes</a></li>
-                    <li><a href="#" onclick="event.preventDefault(); showTerms()" class="text-slate-500 hover:text-[#00979D] transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-[#00979D]"></i> Términos y Condiciones</a></li>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/profile', {tab: 'orders'})" class="text-slate-400 hover:text-yellow-400 transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-yellow-400"></i> Rastrear Pedido</a></li>
+                    <li><a href="#" onclick="event.preventDefault(); router.navigate('/faq')" class="text-slate-400 hover:text-yellow-400 transition-colors flex items-center justify-center lg:justify-start gap-2 group"><i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-yellow-400"></i> Preguntas Frecuentes</a></li>
+    
+
+<li>
+    <a href="#" onclick="event.preventDefault(); showTerms()" class="text-slate-400 hover:text-yellow-400 transition-colors flex items-center justify-center lg:justify-start gap-2 group">
+        <i class="ph-bold ph-caret-right text-xs opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-yellow-400"></i> 
+        Términos y Condiciones
+    </a>
+</li>
+
                 </ul>
             </div>
 
             <div class="lg:col-span-3 text-center lg:text-left">
-                <h4 class="text-slate-900 font-bold mb-6 text-sm uppercase tracking-widest border-b-2 border-green-500 inline-block pb-1">
+                <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-widest border-b border-green-500/30 inline-block pb-1">
                     Contacto
                 </h4>
-                <ul class="space-y-4 text-sm font-medium">
+                <ul class="space-y-4 text-sm">
                     <li>
-                        <a href="https://wa.me/51960436357" target="_blank" class="flex flex-col lg:flex-row items-center lg:items-start gap-3 group p-3 rounded-xl bg-white border border-slate-300 hover:border-green-500 hover:shadow-md transition-all">
-                            <div class="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center text-green-600">
+                        <a href="https://wa.me/51960436357" target="_blank" class="flex flex-col lg:flex-row items-center lg:items-start gap-3 group p-3 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-all border border-transparent hover:border-green-500/30">
+                            <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500">
                                 <i class="ph-fill ph-whatsapp-logo text-lg"></i>
                             </div>
                             <div class="text-left">
-                                <div class="text-slate-900 font-bold group-hover:text-green-600 transition-colors text-xs">Atención al Cliente</div>
-                                <div class="text-slate-500 text-xs">+51 960 436 357</div>
+                                <div class="text-white font-bold group-hover:text-green-400 transition-colors text-xs">Atención al Cliente</div>
+                                <div class="text-slate-400 text-xs">+51 960 436 357</div>
                             </div>
                         </a>
                     </li>
                     <li class="flex flex-col lg:flex-row items-center lg:items-start gap-3 px-3">
-                        <div class="text-slate-400"><i class="ph-fill ph-map-pin text-lg"></i></div>
+                        <div class="text-slate-500"><i class="ph-fill ph-map-pin text-lg"></i></div>
                         <div>
-                            <div class="text-slate-900 font-bold text-xs">OFICINA</div>
+                            <div class="text-white font-bold text-xs">OFICINA</div>
                             <div class="text-slate-500 text-xs">Huánuco, Perú.</div>
                         </div>
                     </li>
@@ -438,28 +425,28 @@
             </div>
         </div>
 
-        <div class="border-t border-slate-300 pt-8 flex flex-col items-center justify-center gap-6">
+        <div class="border-t border-slate-700/50 pt-8 flex flex-col items-center justify-center gap-6">
             
             <div class="flex items-center gap-4">
-                <div class="h-8 px-3 bg-white border border-slate-300 rounded-lg flex items-center justify-center shadow-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
+                <div class="h-8 px-3 bg-white rounded-lg flex items-center justify-center shadow-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" class="h-3 object-contain" alt="Visa">
                 </div>
                 
-                <div class="h-8 px-3 bg-white border border-slate-300 rounded-lg flex items-center justify-center shadow-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
+                <div class="h-8 px-3 bg-white rounded-lg flex items-center justify-center shadow-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" class="h-4 object-contain" alt="Mastercard">
                 </div>
                 
-                <div class="h-8 px-3 bg-white border border-slate-300 rounded-lg flex items-center justify-center shadow-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
+                <div class="h-8 px-3 bg-white rounded-lg flex items-center justify-center shadow-sm grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Icono_de_la_aplicaci%C3%B3n_Yape.png" class="h-5 object-contain" alt="Yape">
                 </div>
                 
-                <div class="h-8 w-14 bg-[#00c9bd] rounded-lg flex items-center justify-center shadow-sm border border-transparent grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
+                <div class="h-8 w-14 bg-[#00c9bd] rounded-lg flex items-center justify-center shadow-sm border border-white/10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 cursor-pointer">
                     <span class="text-[10px] font-extrabold text-white tracking-tighter">PLIN</span>
                 </div>
             </div>
 
-            <div class="text-xs text-slate-500 font-bold text-center">
-                &copy; <span id="year-display"></span> <strong class="text-slate-800 hover:text-[#00979D] transition-colors cursor-pointer">2MTechPerú</strong>. Todos los derechos reservados.
+            <div class="text-xs text-slate-500 font-medium text-center">
+                &copy; <span id="year-display"></span> <strong class="text-slate-300 hover:text-yellow-400 transition-colors cursor-pointer">TechSaul</strong>. Todos los derechos reservados.
             </div>
         </div>
     </div>
@@ -468,6 +455,7 @@
         document.getElementById('year-display').textContent = new Date().getFullYear();
     </script>
 </footer>
+
 
 
     <div id="cart-overlay" class="fixed inset-0 z-[90] hidden">
@@ -502,7 +490,7 @@
       <span class="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded-md mb-1">Envío Contraentrega (Pago en Destino)</span>
         </div>
         
-        <button onclick="userActions.checkout()" class="group w-full bg-slate-900 hover:bg-[#00979D] hover:text-slate-900 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center gap-3">
+        <button onclick="userActions.checkout()" class="group w-full bg-slate-900 hover:bg-yellow-400 hover:text-slate-900 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center gap-3">
             <span class="tracking-widest text-xs uppercase font-extrabold">Proceder al Pago</span>
             <i class="ph-bold ph-arrow-right text-lg group-hover:translate-x-1 transition-transform"></i>
         </button>
@@ -529,7 +517,7 @@
         
         <div>
             <h2 class="text-lg font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                <i class="ph-fill ph-lock-key text-[#00979D]"></i> Pago Seguro
+                <i class="ph-fill ph-lock-key text-yellow-400"></i> Pago Seguro
             </h2>
         </div>
     </div>
@@ -577,7 +565,7 @@
                     <div class="bg-blue-50 p-4 rounded-xl flex items-start gap-3">
                         <i class="ph-fill ph-truck text-blue-600 text-xl mt-1"></i>
                         <div class="text-sm text-blue-800">
-                            <strong>Tiempo de entrega estimado:</strong><br>Huánuco: 24-48 horas.<br>Lima y Provincias: 2 a 4 días hábiles.
+                            <strong>Tiempo de entrega estimado:</strong><br>Lima: 24-48 horas.<br>Provincias: 2 a 4 días hábiles.
                         </div>
                     </div>
 
@@ -588,7 +576,7 @@
                             <a href="#" onclick="event.preventDefault(); Swal.fire({
                                 title: '🛡️ Política de Privacidad y Seguridad',
                                 html: `<div class='text-left text-sm text-slate-600 space-y-3'>
-                                    <p>En <b>2MTechPerú</b>, la seguridad de tu compra es nuestra prioridad.</p>
+                                    <p>En <b>TechSaul</b>, la seguridad de tu compra es nuestra prioridad.</p>
                                     <ul class='list-disc pl-5 space-y-1'>
                                         <li><b>Validación de Identidad:</b> Tus datos (DNI/Teléfono) se usan estrictamente para validar que la compra es real y evitar fraudes.</li>
                                         <li><b>Logística Segura:</b> Tu dirección se comparte únicamente con el courier encargado de la entrega.</li>
@@ -599,13 +587,13 @@
                                 icon: 'info',
                                 confirmButtonText: 'Entendido, acepto',
                                 confirmButtonColor: '#0f172a'
-                            })" class="underline font-bold hover:text-[#26E4ED] transition cursor-pointer">términos y condiciones</a> *
+                            })" class="underline font-bold hover:text-yellow-500 transition cursor-pointer">términos y condiciones</a> *
                         </label>
                     </div>
 
               <button type="button" onclick="checkoutManager.goToPayment()" class="group w-full bg-slate-900 text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-2xl hover:bg-slate-800 transition-all duration-300 transform active:scale-[0.98] mt-6 flex items-center justify-center gap-3 border border-slate-800 relative overflow-hidden">
     <span class="relative z-10 text-lg">Continuar al Pago</span>
-    <div class="bg-[#00979D] text-slate-900 rounded-full w-8 h-8 flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300 z-10">
+    <div class="bg-yellow-400 text-slate-900 rounded-full w-8 h-8 flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300 z-10">
         <i class="ph-bold ph-arrow-right"></i>
     </div>
     <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -628,9 +616,9 @@
                     <div class="bg-white p-6 rounded-2xl border-2 border-slate-900 inline-block shadow-xl relative mt-4">
                        
                        
-                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#00979D] text-slate-900 text-xs font-bold px-3 py-1 rounded-full border border-slate-900">ESCANEA EL QR</div>
-                        <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/qr-2mtp.png" class="w-48 h-48 mx-auto mix-blend-multiply">
-                        <p class="text-xs font-bold mt-2 text-slate-500">Saúl Gonzáles R.</p>
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full border border-slate-900">ESCANEA EL QR PAYPAL</div>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PAYPAL-TRANSFER-TECHSAUL" class="w-48 h-48 mx-auto mix-blend-multiply">
+                        <p class="text-xs font-bold mt-2 text-slate-500">YAPE / PLIN / PAYPAL</p>
                     </div>
 
 
@@ -654,7 +642,7 @@
 
     <label id="payment-code-label" class="text-xs font-bold text-slate-500 block mb-2">Código de Aprobación (3 Dígitos) *</label>
     
-    <input type="tel" id="payment-code" class="w-full p-4 text-center text-2xl tracking-[1em] font-bold border-2 border-slate-300 rounded-xl focus:border-[#00979D] outline-none bg-white transition-all" maxlength="3" placeholder="•••">
+    <input type="tel" id="payment-code" class="w-full p-4 text-center text-2xl tracking-[1em] font-bold border-2 border-slate-300 rounded-xl focus:border-yellow-400 outline-none bg-white transition-all" maxlength="3" placeholder="•••">
     
     <p class="text-[10px] text-slate-400 mt-2 text-center">Ingresa el código/número que aparece en tu comprobante</p>
 </div>
@@ -706,7 +694,7 @@
             
             <div class="p-5 bg-white border-b border-slate-100 flex justify-between items-center shadow-sm z-10">
                 <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-                    <i class="ph-bold ph-receipt text-[#00979D]"></i> <span id="od-modal-id">Pedido #</span>
+                    <i class="ph-bold ph-receipt text-yellow-400"></i> <span id="od-modal-id">Pedido #</span>
                 </h2>
                 <button onclick="userActions.closeOrderDetails()" class="p-2 hover:bg-slate-100 rounded-full transition text-slate-500 hover:text-red-500">
                     <i class="ph-bold ph-x text-xl"></i>
@@ -735,7 +723,7 @@
                     <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border-2 border-[#075E54] rounded-full animate-pulse"></div>
                 </div>
                 <div class="z-10">
-                    <h3 class="text-white font-bold text-sm">Soporte 2MTP</h3>
+                    <h3 class="text-white font-bold text-sm">Soporte TechSaul</h3>
                     <p class="text-green-100 text-[9px] font-bold uppercase tracking-wider">Respuesta inmediata</p>
                 </div>
                 <button onclick="waManager.toggle()" class="ml-auto text-green-100 hover:text-white transition bg-white/10 p-1 rounded-full backdrop-blur-sm">
@@ -747,7 +735,7 @@
                 <div class="text-center text-[9px] text-slate-500 font-bold mb-3 uppercase tracking-widest bg-white/50 inline-block px-2 rounded-full mx-auto shadow-sm">Hoy</div>
                 <div class="flex gap-2 mb-3 fade-in">
                     <div class="bg-white p-2.5 rounded-xl rounded-tl-none shadow-sm max-w-[90%] relative">
-                        <p class="text-slate-800 text-xs leading-snug">¡Hola! 👋 Bienvenido a TechPerú. ¿En qué podemos ayudarte hoy?</p>
+                        <p class="text-slate-800 text-xs leading-snug">¡Hola! 👋 Bienvenido a TechSaul. ¿En qué podemos ayudarte hoy?</p>
                         <span class="text-[8px] text-slate-400 mt-1 block text-right flex items-center justify-end gap-1">Justo ahora <i class="ph-bold ph-checks text-blue-500"></i></span>
                     </div>
                 </div>
@@ -785,35 +773,36 @@
 
 
 
-<div id="points-promo-banner" class="fixed bottom-0 left-0 w-full z-[45] transform translate-y-full transition-transform duration-700 ease-out font-sans">
-    <div class="bg-slate-900/95 backdrop-blur-md border-t-2 border-[#0b1120] shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            
-            <div class="flex items-center gap-4 cursor-pointer group" onclick="router.navigate('/profile', {tab: 'summary'})">
-                <div class="relative w-10 h-10 flex-shrink-0">
-                    <div class="absolute inset-0 bg-[#FFB208] rounded-full animate-ping opacity-20"></div>
-                    
-                    <div class="relative w-full h-full bg-gradient-to-br from-yellow-300 to-[#FFB208] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <i class="ph-fill ph-star text-slate-900 text-xl"></i>
+
+    <div id="points-promo-banner" class="fixed bottom-0 left-0 w-full z-[45] transform translate-y-full transition-transform duration-700 ease-out font-sans">
+        <div class="bg-slate-900/95 backdrop-blur-md border-t-2 border-yellow-400 shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+                
+                <div class="flex items-center gap-4 cursor-pointer group" onclick="router.navigate('/profile', {tab: 'summary'})">
+                    <div class="relative w-10 h-10 flex-shrink-0">
+                        <div class="absolute inset-0 bg-yellow-400 rounded-full animate-ping opacity-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-star text-slate-900 text-xl"></i>
+                        </div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[8px] font-bold text-white border border-slate-900 animate-bounce">+1</div>
                     </div>
-                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-[8px] font-bold text-white border border-slate-900 animate-bounce">+1</div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm md:text-base leading-tight group-hover:text-yellow-400 transition">
+                            ¡Aprovecha y Gana Puntos!
+                        </h4>
+                        <p class="text-slate-400 text-xs md:text-sm leading-tight">
+                            Acumula puntos <span class="text-yellow-400 font-bold">VIP</span> en cada compra hoy.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-white font-bold text-sm md:text-base leading-tight group-hover:text-[#FFB208] transition">
-                        ¡Aprovecha y Gana Puntos!
-                    </h4>
-                    <p class="text-slate-400 text-xs md:text-sm leading-tight">
-                        Acumula puntos <span class="text-[#FFB208] font-bold">VIP</span> en cada compra hoy.
-                    </p>
-                </div>
+                
+                <button onclick="closePointsBanner()" class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:bg-white/10 hover:text-white transition">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
             </div>
-            
-            <button onclick="closePointsBanner()" class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:bg-white/10 hover:text-white transition">
-                <i class="ph-bold ph-x text-lg"></i>
-            </button>
         </div>
     </div>
-</div>
+
 
 
 <div id="video-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/90 backdrop-blur-sm transition-opacity opacity-0" onclick="closeVideoModal()">
@@ -848,7 +837,7 @@
                 
                 <p id="ad-popup-msg" class="text-slate-500 text-sm leading-relaxed mb-6"></p>
                 
-                <button id="ad-popup-btn" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl shadow-lg group-hover:bg-[#00979D] group-hover:text-slate-900 transition-all duration-300 flex items-center justify-center gap-2">
+                <button id="ad-popup-btn" class="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl shadow-lg group-hover:bg-yellow-400 group-hover:text-slate-900 transition-all duration-300 flex items-center justify-center gap-2">
                     <span id="ad-btn-label">Ver Oferta</span>
                     <i class="ph-bold ph-arrow-right"></i>
                 </button>
@@ -856,18 +845,6 @@
         </div>
     </div>
 </div>
-
-
-<button id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
-    class="fixed bottom-6 left-6 z-[80] w-12 h-12 bg-slate-900 text-white rounded-full shadow-2xl border-2 border-slate-700 flex items-center justify-center transition-all duration-500 opacity-0 invisible translate-y-10 hover:bg-[#00979D] hover:border-[#00979D] hover:scale-110 group">
-    
-    <i class="ph-bold ph-arrow-up text-xl group-hover:animate-bounce"></i>
-    
-    <span class="absolute left-full ml-2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-        Subir
-    </span>
-</button>
-
 
 
     <script type="module" src="script.js"></script>
