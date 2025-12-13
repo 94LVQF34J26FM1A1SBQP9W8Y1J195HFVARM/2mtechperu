@@ -4209,14 +4209,19 @@ function renderLogin(container) {
                         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1950&q=80" class="absolute inset-0 w-full h-full object-cover opacity-50">
                         <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
                         <div class="relative z-10 p-12 text-white max-w-lg">
-    <div class="flex items-center gap-3 mb-6">
-    <i class="ph-fill ph-circuitry text-[#00979D] text-4xl"></i>
+    
+<div class="flex items-center gap-4 mb-6">
+    <img src="https://qeoojbsrqlroajvdgrju.supabase.co/storage/v1/object/public/productos/2MTECHPERU%20logo.png"
+         class="h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(0,151,157,0.3)]"
+         alt="Logotipo 2MTechPerú">
     <h1 class="text-4xl font-extrabold tracking-tighter flex gap-2">
-        <span class="text-[#10c4c1]">2M</span>
-        <span class="text-[#0ae4da]">Tech</span>
-        <span class="text-white">Perú</span>
+        <span class="text-[#10c4c1]" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">2M</span>
+        <span class="text-[#0ae4da]" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Tech</span>
+        <span class="text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Perú</span>
     </h1>
 </div>
+
+
                             <h2 class="text-5xl font-bold leading-tight mb-6">Tu tienda virtual de confianza y a un buen precio.</h2>
                             <p class="text-lg text-slate-300 mb-8">Únete a nuestra comunidad y accede a ofertas, puntos para canjear y mucho más.</p>
                         </div>
