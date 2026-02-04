@@ -285,4 +285,11 @@ img {
     -moz-user-select: none;
     -ms-user-select: none;
 }
-
+@media (max-width: 768px) {
+    .group\/banner {
+        height: 75vh !important; 
+    }
+    picture img {
+        object-position: center center;
+    }
+}
