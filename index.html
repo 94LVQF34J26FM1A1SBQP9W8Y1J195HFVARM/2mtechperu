@@ -5,22 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2MTechPerú</title>
 <link rel="icon" type="image/png" href="favicon.png">
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
     <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
-
-
     <link rel="stylesheet" href="styles.css">
 </head>
-
 
 <body class="antialiased min-h-screen flex flex-col text-slate-800 overflow-x-hidden">
 
@@ -195,10 +188,12 @@
                 </button>
             </div>
         </div>
+<div id="mobile-search-bar" class="relative hidden mt-3 md:hidden pb-2">
+    <input type="search" name="mobile_query_final_fix" id="mobile-search-input" autocomplete="one-time-code" readonly onfocus="this.removeAttribute('readonly');" class="w-full bg-slate-800 text-white border border-slate-700 rounded-lg py-2 px-4 focus:ring-1 focus:ring-[#00979D] outline-none text-sm" placeholder="Buscar productos...">
+    
+    <div id="mobile-search-results" class="absolute top-full left-0 w-full bg-white mt-2 rounded-xl shadow-2xl border border-slate-100 hidden z-[60] max-h-[300px] overflow-y-auto custom-scrollbar"></div>
+</div>
 
-        <div id="mobile-search-bar" class="hidden mt-3 md:hidden pb-2">
-            <input type="search" name="mobile_query_final_fix" id="mobile-search-input" autocomplete="one-time-code" readonly onfocus="this.removeAttribute('readonly');" class="w-full bg-slate-800 text-white border border-slate-700 rounded-lg py-2 px-4 focus:ring-1 focus:ring-[#00979D] outline-none text-sm" placeholder="Buscar productos...">
-        </div>
     </div>
 
     <div class="hidden lg:block border-t border-slate-800 bg-[#0B1120] z-50 relative shadow-2xl">
@@ -250,8 +245,6 @@
     </a>
 </li>
 
-
-
                 <li class="h-full flex items-center">
                     <a id="nav-about" href="#" onclick="event.preventDefault(); router.navigate('/about')" class="relative group h-full flex items-center px-4 overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-b from-[#00979D]/0 via-[#00979D]/5 to-[#00979D]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -265,8 +258,6 @@
         </div>
     </div>
 </header>
-
-
 
     <div id="mobile-menu" class="fixed inset-0 z-[60] hidden lg:hidden">
         <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity" onclick="uiManager.toggleMobileMenu()"></div>
@@ -314,10 +305,7 @@
 
     <main id="app" class="flex-grow w-full fade-in min-h-[60vh]"></main>
 
-
-
-
-    
+ 
 <footer id="main-footer" class="relative bg-slate-100 text-slate-600 font-sans mt-auto pt-16 pb-8 border-t border-slate-300">
 
     <div class="absolute inset-0 bg-gradient-to-b from-white via-[#f1f5f9] to-[#e2e8f0] z-0 pointer-events-none"></div>
@@ -882,9 +870,6 @@
         Subir
     </span>
 </button>
-
-
-
     <script type="module" src="script.js"></script>
 </body>
 </html>
